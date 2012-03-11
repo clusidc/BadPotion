@@ -1,0 +1,5 @@
+name: BadPotion
+version: 3.0
+author: Wundark
+main: eu.Wundark.BadPotion.BadPotion
+description: Stops the use of Potions
