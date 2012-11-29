@@ -53,7 +53,7 @@ public class BPPlayerListener implements Listener {
 			}
 			if (event.getPlayer().getItemInHand().getTypeId() == 384) {
 			  
-			  if (event.getPlayer().hasPermission("badpotion.bypass")
+			  if (event.getPlayer().hasPermission("badpotion.bypass") || event.getPlayer().hasPermission("badpotion.bypass.experience")
             || in_array(TileEntity, event.getClickedBlock()))
           return;
 			  
