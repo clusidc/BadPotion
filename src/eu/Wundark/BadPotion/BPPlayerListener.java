@@ -51,6 +51,20 @@ public class BPPlayerListener implements Listener {
 					event.getPlayer().updateInventory();
 				}
 			}
+			if (event.getPlayer().getItemInHand().getTypeId() == 384) {
+			  
+			  if (event.getPlayer().hasPermission("badpotion.bypass")
+            || in_array(TileEntity, event.getClickedBlock()))
+          return;
+			  
+        if (Boolean.parseBoolean(String.valueOf(pl.config.get("blockall"))) ||
+            Boolean.parseBoolean(String.valueOf(pl.config.get("blockexperiencepotion")))) {
+          event.getPlayer().sendMessage(
+              (String) pl.config.get("blockmsg"));
+          event.setCancelled(true);
+          event.getPlayer().updateInventory();
+        }
+			}
 		}
 	}
 

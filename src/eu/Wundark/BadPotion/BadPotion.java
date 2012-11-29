@@ -36,6 +36,12 @@ public class BadPotion extends JavaPlugin {
 			8201, //Strength Potion (3:00)
 			8265, //Strength Potion (8:00)
 			8233, //Strength Potion II (1:30)
+			
+			8198, //Night Vision (3:00)
+			8262, //Night Vision (8:00)
+			
+			8206, //invisible (3:00)
+			8270  //invisible (8:00)
 	};
 	
 	public int[] badPotions = {
@@ -53,6 +59,7 @@ public class BadPotion extends JavaPlugin {
 			
 			8204, //Harming Potion
 			8268, //Harming Potion
+			8236  //Harming Potion
 	};
 	
 	public int[] goodSlashPotions = {
@@ -102,6 +109,8 @@ public class BadPotion extends JavaPlugin {
 		confdefaults.put("config.blockall", false);
 		confdefaults.put("config.blockmsg", "&4Your are not permitted to use this Potion!");
 		
+    confdefaults.put("blockexperiencepotion", false);
+		
 		for(int potion : goodPotions) confdefaults.put("good."+potion, false);
 		
 		for(int potion : goodSlashPotions) confdefaults.put("goodsplash."+potion, false);
@@ -122,6 +131,8 @@ public class BadPotion extends JavaPlugin {
 		//Option to block ALL Potions.
 		config.put("blockall", getConfig().getBoolean("config.blockall"));
 		config.put("blockmsg", ColorMsg(getConfig().getString("config.blockmsg")));
+		
+		config.put("blockexperiencepotion", getConfig().getBoolean("blockexperiencepotion"));
 		
 		ConfigurationSection goodSec = getConfig().getConfigurationSection("good");
 		for (String potion : goodSec.getKeys(false)) {
