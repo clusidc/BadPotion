@@ -40,8 +40,8 @@ public class BadPotion extends JavaPlugin {
 			8198, //Night Vision (3:00)
 			8262, //Night Vision (8:00)
 			
-			8206, // Invisibility (3:00)
-			8270, // Invisibility (8:00)
+			8206, //Invisibility (3:00)
+			8270, //Invisibility (8:00)
 	};
 	
 	public int[] badPotions = {
@@ -59,6 +59,7 @@ public class BadPotion extends JavaPlugin {
 			
 			8204, //Harming Potion
 			8268, //Harming Potion
+			8236, //Harming Potion
 	};
 	
 	public int[] goodSlashPotions = {

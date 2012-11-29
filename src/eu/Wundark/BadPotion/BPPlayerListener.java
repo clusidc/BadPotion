@@ -35,9 +35,11 @@ public class BPPlayerListener implements Listener
 		{
 			Player player = event.getPlayer();
 			
-			if (event.getPlayer().getItemInHand().getTypeId() == 373)
+			boolean potionblocked = false;
+			
+			if (player.getItemInHand().getTypeId() == 373)
 			{
-				int potionDurability = event.getPlayer().getItemInHand().getDurability();
+				int potionDurability = player.getItemInHand().getDurability();
 				
 				if (player.hasPermission("badpotion.bypass") || player.hasPermission("badpotion.bypass." + potionDurability) || in_array(TileEntity, event.getClickedBlock()))
 				{
@@ -50,27 +52,31 @@ public class BPPlayerListener implements Listener
 				{
 					badPotionUsed = true;
 				}
-				
-				boolean potionblocked = false;
 
 				if (badPotionUsed || Boolean.parseBoolean(String.valueOf(pl.config.get("blockall"))))
 				{
 					potionblocked = true;
 				}
-				
-				// v4.0: Feature added by 'clusidc'
-		        if (Boolean.parseBoolean(String.valueOf(pl.config.get("blockall"))) || Boolean.parseBoolean(String.valueOf(pl.config.get("blockexperiencepotion")))) 
-		        {
-		        	potionblocked = true;
-		        }
-		        
-		        if(potionblocked)
-		        {
-					event.getPlayer().sendMessage((String) pl.config.get("blockmsg"));
-					event.setCancelled(true);
-					event.getPlayer().updateInventory();
-		        }
 			}
+			
+			// v4.0: Feature added by 'clusidc'
+	        if (player.getItemInHand().getTypeId() == 373 && !in_array(TileEntity, event.getClickedBlock()))
+	        {
+        		if(Boolean.parseBoolean(String.valueOf(pl.config.get("blockall"))) || Boolean.parseBoolean(String.valueOf(pl.config.get("blockexperiencepotion"))))
+        		{
+    	        	if(!player.hasPermission("badpotion.bypass.experience"))
+    	        	{
+    	        		potionblocked = true;
+    	        	}
+        		}
+	        }
+			
+	        if(potionblocked)
+	        {
+				event.getPlayer().sendMessage((String) pl.config.get("blockmsg"));
+				event.setCancelled(true);
+				event.getPlayer().updateInventory();
+	        }
 		}
 	}
 
