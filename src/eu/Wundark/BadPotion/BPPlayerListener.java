@@ -60,23 +60,24 @@ public class BPPlayerListener implements Listener
 			}
 			
 			// v4.0: Feature added by 'clusidc'
-	        if (player.getItemInHand().getTypeId() == 373 && !in_array(TileEntity, event.getClickedBlock()))
-	        {
-        		if(Boolean.parseBoolean(String.valueOf(pl.config.get("blockall"))) || Boolean.parseBoolean(String.valueOf(pl.config.get("blockexperiencepotion"))))
-        		{
-    	        	if(!player.hasPermission("badpotion.bypass.experience"))
-    	        	{
-    	        		potionblocked = true;
-    	        	}
-        		}
-	        }
+	        	if (player.getItemInHand().getTypeId() == 384 && !in_array(TileEntity, event.getClickedBlock()))
+	        	//http://www.minecraftwiki.net/wiki/Bottle_o%27_Enchanting
+	 		{
+        			if(Boolean.parseBoolean(String.valueOf(pl.config.get("blockall"))) || Boolean.parseBoolean(String.valueOf(pl.config.get("blockexperiencepotion"))))
+        			{
+    	        			if(!player.hasPermission("badpotion.bypass.experience"))
+    	        			{
+    	        				potionblocked = true;
+    	        			}
+        			}
+	        	}
 			
-	        if(potionblocked)
-	        {
+	        	if(potionblocked)
+	        	{
 				event.getPlayer().sendMessage((String) pl.config.get("blockmsg"));
 				event.setCancelled(true);
 				event.getPlayer().updateInventory();
-	        }
+	        	}
 		}
 	}
 
